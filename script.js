@@ -1,14 +1,31 @@
+// Create variables
 const recordBtn = document.querySelector(".record"),
   result = document.querySelector(".result"),
   downloadBtn = document.querySelector(".download"),
   inputLanguage = document.querySelector("#language"),
   clearBtn = document.querySelector(".clear");
-
+// speach recognition
 let SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition,
   recognition,
   recording = false;
+// languages
+const languages = [
+  {
+    no: "16",
+    name: "English",
+    native: "English",
+    code: "en",
+  },
+  {
+    no: "3",
+    name: "Arabic",
+    native: "عربي",
+    code: "ar",
+  },
+];
 
+// function to add languages to select in our html by creating options
 function populateLanguages() {
   languages.forEach((lang) => {
     const option = document.createElement("option");
@@ -17,9 +34,9 @@ function populateLanguages() {
     inputLanguage.appendChild(option);
   });
 }
-
+// callback the function
 populateLanguages();
-
+// Speech to Text Function
 function speechToText() {
   try {
     recognition = new SpeechRecognition();
