@@ -88,7 +88,7 @@ function speechToText() {
     console.log(error);
   }
 }
-
+// event listener
 recordBtn.addEventListener("click", () => {
   if (!recording) {
     speechToText();
@@ -97,14 +97,14 @@ recordBtn.addEventListener("click", () => {
     stopRecording();
   }
 });
-
+//  stop recording function
 function stopRecording() {
   recognition.stop();
   recordBtn.querySelector("p").innerHTML = "Start Listening";
   recordBtn.classList.remove("recording");
   recording = false;
 }
-
+// Function to download text
 function download() {
   const text = result.innerText;
   const filename = "speech.txt";
@@ -120,7 +120,7 @@ function download() {
   element.click();
   document.body.removeChild(element);
 }
-
+// event listener
 downloadBtn.addEventListener("click", download);
 
 clearBtn.addEventListener("click", () => {
