@@ -5,25 +5,12 @@ const recordBtn = document.querySelector(".record"),
   inputLanguage = document.querySelector("#language"),
   clearBtn = document.querySelector(".clear");
 // speach recognition
+// Web Speech API is the controller interface for the recognition service
 let SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition,
   recognition,
   recording = false;
 // languages
-const languages = [
-  {
-    no: "16",
-    name: "English",
-    native: "English",
-    code: "en",
-  },
-  {
-    no: "3",
-    name: "Arabic",
-    native: "عربي",
-    code: "ar",
-  },
-];
 
 // function to add languages to select in our html by creating options
 function populateLanguages() {
@@ -84,7 +71,6 @@ function speechToText() {
     };
   } catch (error) {
     recording = false;
-
     console.log(error);
   }
 }
@@ -108,7 +94,6 @@ function stopRecording() {
 function download() {
   const text = result.innerText;
   const filename = "speech.txt";
-
   const element = document.createElement("a");
   element.setAttribute(
     "href",
@@ -120,10 +105,13 @@ function download() {
   element.click();
   document.body.removeChild(element);
 }
-// event listener
+// event listener download button
 downloadBtn.addEventListener("click", download);
 
+// event listener clear button
 clearBtn.addEventListener("click", () => {
   result.innerHTML = "";
   downloadBtn.disabled = true;
 });
+
+/////////////////////////////////////////////////////////////////////
